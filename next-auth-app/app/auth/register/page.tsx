@@ -1,6 +1,4 @@
-import React from 'react'
-
- const RegisterPage = () => {
+const RegisterPage = () => {
   return (
     <div>RegisterPage</div>
   )
