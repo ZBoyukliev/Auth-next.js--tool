@@ -1,11 +1,27 @@
 "use client"
 
+import Link from "next/link";
 import { Button } from "../ui/button"
 
-export const BackButton = () => {
+interface BackButtonProps {
+    href: string;
+    label: string;
+}
+
+export const BackButton = ({
+    href,
+    label
+}: BackButtonProps) => {
     return (
-        <Button>
-            Back Button
+        <Button
+        variant={"link"}
+        className="f-normal w-full"
+        size={"sm"}
+        asChild
+        >
+            <Link href={href}>
+                {label}
+            </Link>
         </Button>
     )
 }
