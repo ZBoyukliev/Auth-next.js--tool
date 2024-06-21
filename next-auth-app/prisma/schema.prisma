@@ -16,7 +16,7 @@ model User {
   email         String?   @unique
   emailVerified DateTime? @map("email_verified")
   image         String?
-  passwrd       String?
+  password       String?
   accounts      Account[]
  
   @@map("users")
