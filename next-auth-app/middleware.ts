@@ -1,4 +1,4 @@
-import { auth } from "@/auth.config";
+import { auth } from "@/auth";
 
 import {
     DEFAULT_LOGIN_REDIRECT,
