@@ -1,7 +1,9 @@
+import { auth } from "@/auth.config";
 
-const SettingsPage = () => {
+const SettingsPage = async () => {
+    const session = await auth();
     return(
-        <div>Settings Page</div>
+        <div>{JSON.stringify(session)}</div>
     )
 };
 
