@@ -1,4 +1,4 @@
-import { auth } from "@/auth.config";
+import { auth } from "@/auth";
 
 const SettingsPage = async () => {
     const session = await auth();
