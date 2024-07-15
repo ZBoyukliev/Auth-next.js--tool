@@ -38,7 +38,6 @@ export const login = async (values: z.infer<typeof LoginSchema>) => {
         return { error: undefined, success: "Login successful" };
     } catch (error) {
         if (error instanceof AuthError) {
-            console.log(error)
             switch (error.type) {
                 case "CallbackRouteError":
                     return {
