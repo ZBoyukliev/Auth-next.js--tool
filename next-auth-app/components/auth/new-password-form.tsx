@@ -19,7 +19,7 @@ import { Button } from "../ui/button";
 import { FormError } from "../form-error";
 import { FormSuccess } from "../form-success";
 import { useState, useTransition } from "react";
-import { reset } from "@/actions/reset";
+import { newPassword } from "@/actions/new-password";
 import { useSearchParams } from "next/navigation";
 
 export const NewPasswordForm = () => {
@@ -44,7 +44,7 @@ export const NewPasswordForm = () => {
     console.log(values)
 
     startTransition(() => {
-      reset(values)
+      newPassword(values, token)
         .then((data) => {
           setError(data?.error);
           setSuccess(data?.success)
