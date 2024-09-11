@@ -3,7 +3,6 @@
 import { Button } from "@/components/ui/button";
 import { useCurrentUser } from "@/hooks/use-current-user";
 import { signOut } from "next-auth/react";
-import { useEffect } from "react";
 
 const SettingsPage = () => {
 
