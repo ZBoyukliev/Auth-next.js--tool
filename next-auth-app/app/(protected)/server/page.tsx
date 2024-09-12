@@ -1,7 +1,10 @@
+import { currentUser } from "@/lib/auth"
 
-const ServerPage = () => {
+const ServerPage = async() => {
+
+    const user = await currentUser();
   return (
-    <div>Server Page</div>
+    <div>Server Page {JSON.stringify(user)}</div>
   )
 }
 
