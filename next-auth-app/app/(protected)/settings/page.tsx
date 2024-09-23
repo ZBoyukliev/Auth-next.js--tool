@@ -1,22 +1,33 @@
 "use client";
 
+import * as z from "zod";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { settings } from "@/actions/settings";
 import { Button } from "@/components/ui/button";
+import { SettingsSchema } from "@/schemas";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { useSession } from "next-auth/react";
 import { useTransition } from "react";
 
 const SettingsPage = () => {
 
-    const {update} = useSession();
+    const { update } = useSession();
     const [isPending, startTransition] = useTransition();
 
-    const onClick = () => {
+    const form = useForm<z.infer<typeof SettingsSchema>>({
+        resolver: zodResolver(SettingsSchema),
+        defaultValues: {
+            name: ""
+        }
+    })
+
+    const onSubmit = (values: z.infer<typeof SettingsSchema>) => {
         startTransition(() => {
-            settings({ name: "New name88" })
-            .then(() => {
-                update()
-            })
+            settings(values)
+                .then(() => {
+                    update()
+                })
         })
     }
 
@@ -28,7 +39,7 @@ const SettingsPage = () => {
                 </p>
             </CardHeader>
             <CardContent>
-                <Button disabled={isPending} onClick={onClick}>
+                <Button disabled={isPending}>
                     Update name
                 </Button>
             </CardContent>
