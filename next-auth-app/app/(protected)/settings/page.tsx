@@ -8,10 +8,11 @@ import { Button } from "@/components/ui/button";
 import { SettingsSchema } from "@/schemas";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { useSession } from "next-auth/react";
-import { useTransition } from "react";
+import { useState, useTransition } from "react";
 
 const SettingsPage = () => {
-
+    const [error, setError] = useState<string | undefined>();
+    const [success, setSuccess] = useState<string | undefined>();
     const { update } = useSession();
     const [isPending, startTransition] = useTransition();
 
@@ -25,9 +26,17 @@ const SettingsPage = () => {
     const onSubmit = (values: z.infer<typeof SettingsSchema>) => {
         startTransition(() => {
             settings(values)
-                .then(() => {
-                    update()
+                .then((data) => {
+                    if (data.error) {
+                        setError(data.error)
+                    }
+
+                    if (data.success) {
+                        update()
+                        setSuccess(data.success)
+                    }
                 })
+                .catch(() => { setError("Something went wrong!")})
         })
     }
 
