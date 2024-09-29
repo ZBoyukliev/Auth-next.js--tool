@@ -121,7 +121,7 @@ const SettingsPage = () => {
                                                     New Password
                                                 </FormLabel>
                                                 <FormControl>
-                                                    <Input {...field} placeholder="johndoe@example.com" disabled={isPending} type="email" />
+                                                    <Input {...field} placeholder="******" disabled={isPending} type="password" />
                                                 </FormControl>
                                                 <FormMessage />
                                             </FormItem>
